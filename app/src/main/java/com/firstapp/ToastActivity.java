@@ -25,7 +25,11 @@ public class ToastActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+
                 Toast.makeText(ToastActivity.this,"哈哈",Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(ToastActivity.this,"你按了按钮键",Toast.LENGTH_SHORT).show();
+
             }
         });
 
