@@ -1,7 +1,6 @@
 package com.firstapp;
 
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -56,7 +55,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_login;
     private Button btn_register;
     private TextView tv;
-    private ProgressDialog pDialog;
     private SessionManager session;
     private SQLiteHandler db;
     private EditText et_users;
