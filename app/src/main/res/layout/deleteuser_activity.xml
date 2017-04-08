@@ -18,6 +18,16 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="用户删除"
+            android:textColor="#03afff"
+            android:textSize="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:textAlignment="center" />
         <EditText
             android:id="@+id/del_username"
             android:layout_width="fill_parent"
@@ -29,7 +39,7 @@
             android:padding="10dp"
             android:textColor="@color/input_register"
             android:textColorHint="@color/input_register_hint"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="150dp"
             android:layout_marginBottom="5dp" />
 
         <EditText
@@ -44,7 +54,7 @@
             android:singleLine="true"
             android:textColor="@color/input_register"
             android:textColorHint="@color/input_register_hint"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="200dp"
             android:layout_marginBottom="5dp" />
 
         <Button
@@ -54,7 +64,7 @@
             android:background="#ea4c88"
             android:text="Delete"
             android:textColor="#FFFFFF"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="270dp"
             android:layout_marginBottom="15dp" />
 
         <!-- Link to Login Screen -->

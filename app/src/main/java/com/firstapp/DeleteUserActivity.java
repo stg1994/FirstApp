@@ -17,7 +17,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.firstapp.db.AppConfig;
 import com.firstapp.db.AppController;
-import com.firstapp.db.SQLiteHandler;
 import com.firstapp.db.SessionManager;
 import com.firstapp.progressDialog.CustomProgressDialog;
 
@@ -36,7 +35,6 @@ public class DeleteUserActivity extends AppCompatActivity {
     private EditText del_username;
     private EditText del_password;
     private SessionManager session;
-    private SQLiteHandler db;
     private static final String TAG = DeleteUserActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedIntanceState){
@@ -49,8 +47,6 @@ public class DeleteUserActivity extends AppCompatActivity {
         del_username = (EditText) findViewById(R.id.del_username);
         del_password = (EditText) findViewById(R.id.del_password);
 
-        //SQLite数据库处理程序
-        db = new SQLiteHandler(getApplicationContext());
         //会话管理器
         session = new SessionManager(getApplicationContext());
 
@@ -74,7 +70,7 @@ public class DeleteUserActivity extends AppCompatActivity {
     //功能验证数据库的删除用户信息
     private void checkDelete(final String username,final String password){
         String tag_string_req = "req_delete";
-        final Dialog pDailog = CustomProgressDialog.createLoadingDialog(this,"正在加载...");
+        final Dialog pDailog = CustomProgressDialog.createLoadingDialog(this,"正在删除...");
         pDailog.setCancelable(false);//进度条不允许用“返回键”取消
         pDailog.show();//显示进度条
         StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_DELETE, new Response.Listener<String>() {
