@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
                     case 2:
                         logoutUser();
                         break;
+                    case 3:
+                        intent.setClass(getApplicationContext(),com.firstapp.ProgressDialog.class);
+                        MainActivity.this.startActivity(intent);
+                        break;
                 }
             }
         });
@@ -68,13 +72,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initListitem(){
-        Listitem apple = new Listitem("Apple", R.drawable.wedding_19);
+        Listitem apple = new Listitem("Toast显示", R.drawable.wedding_19);
         Listitem.add(apple);
         Listitem refresh = new Listitem("刷新动画", R.drawable.wedding_30);
         Listitem.add(refresh);
         Listitem logout = new Listitem("退出登录", R.drawable.wedding_19);
         Listitem.add(logout);
-        Listitem watermelon = new Listitem("WaterMelon", R.drawable.wedding_30);
+        Listitem watermelon = new Listitem("显示进度", R.drawable.wedding_30);
         Listitem.add(watermelon);
         Listitem pear = new Listitem("Pear", R.drawable.wedding_19);
         Listitem.add(pear);

@@ -20,6 +20,7 @@ import com.firstapp.db.AppConfig;
 import com.firstapp.db.AppController;
 import com.firstapp.db.SQLiteHandler;
 import com.firstapp.db.SessionManager;
+import com.firstapp.progressDialog.CustomProgressDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
