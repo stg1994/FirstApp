@@ -1,5 +1,6 @@
 package com.firstapp;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,9 +10,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.firstapp.db.SQLiteHandler;
 import com.firstapp.db.SessionManager;
+import com.firstapp.progressDialog.CustomProgressDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,8 +46,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 switch (position){
                     case 0:
-                        intent.setClass(getApplicationContext(),ToastActivity.class);
-                        MainActivity.this.startActivity(intent);
+                    {
+                        Toast.makeText(getApplicationContext(),"Hello",Toast.LENGTH_LONG).show();
+                    }
                         break;
                     case 1:
                         intent.setClass(getApplicationContext(),com.firstapp.refresh.FlyRefreshActivity.class);
@@ -53,9 +57,11 @@ public class MainActivity extends AppCompatActivity {
                     case 2:
                         logoutUser();
                         break;
-                    case 3:
-                        intent.setClass(getApplicationContext(),com.firstapp.ProgressDialog.class);
-                        MainActivity.this.startActivity(intent);
+                    case 3:{
+                        Dialog pDialog = CustomProgressDialog.createLoadingDialog(MainActivity.this,"正在加载...");
+                        pDialog.setCancelable(true);
+                        pDialog.show();
+                    }
                         break;
                     case 4:
                         intent.setClass(getApplicationContext(),com.firstapp.DeleteUserActivity.class);
