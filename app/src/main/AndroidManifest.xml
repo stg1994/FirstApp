@@ -75,6 +75,7 @@
         <activity android:name=".RegisterActivity"/>
         <activity android:name="com.firstapp.refresh.FlyRefreshActivity"/>
         <activity android:name=".ProgressDialog"/>
+        <activity android:name=".DeleteUserActivity"/>
 
     </application>
 

@@ -57,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
                         intent.setClass(getApplicationContext(),com.firstapp.ProgressDialog.class);
                         MainActivity.this.startActivity(intent);
                         break;
+                    case 4:
+                        intent.setClass(getApplicationContext(),com.firstapp.DeleteUserActivity.class);
+                        MainActivity.this.startActivity(intent);
+                        break;
                 }
             }
         });
@@ -80,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         Listitem.add(logout);
         Listitem watermelon = new Listitem("显示进度", R.drawable.wedding_30);
         Listitem.add(watermelon);
-        Listitem pear = new Listitem("Pear", R.drawable.wedding_19);
+        Listitem pear = new Listitem("删除用户", R.drawable.wedding_19);
         Listitem.add(pear);
         Listitem grape = new Listitem("Grape", R.drawable.wedding_30);
         Listitem.add(grape);

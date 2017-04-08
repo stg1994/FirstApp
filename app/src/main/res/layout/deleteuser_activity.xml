@@ -19,7 +19,7 @@
         android:layout_alignParentBottom="true">
 
         <EditText
-            android:id="@+id/re_username"
+            android:id="@+id/del_username"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@color/input_register_bg"
@@ -33,7 +33,7 @@
             android:layout_marginBottom="5dp" />
 
         <EditText
-            android:id="@+id/re_password"
+            android:id="@+id/del_password"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@color/input_register_bg"
@@ -48,11 +48,11 @@
             android:layout_marginBottom="5dp" />
 
         <Button
-            android:id="@+id/btnRegister"
+            android:id="@+id/btn_delete"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="#ea4c88"
-            android:text="Register"
+            android:text="Delete"
             android:textColor="#FFFFFF"
             android:layout_marginTop="150dp"
             android:layout_marginBottom="15dp" />

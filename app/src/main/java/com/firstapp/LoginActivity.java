@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     private SQLiteHandler db;
     private EditText et_users;
     private EditText et_pwd;
-    private static final String TAG = RegisterActivity.class.getSimpleName();
+    private static final String TAG = LoginActivity.class.getSimpleName();
 
 
     @Override

@@ -9,4 +9,6 @@ public class AppConfig {
     public static String URL_LOGIN = "http://120.77.240.53/login.php";
     // Server user register url
     public static String URL_REGISTER = "http://120.77.240.53/register.php";
+    //Server user delete url
+    public static String URL_DELETE = "http://120.77.240.53/delete.php";
 }
