@@ -1,6 +1,6 @@
 package com.firstapp;
 
-import android.app.ProgressDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText inputusername;
     private EditText inputpassword;
     private Button btnRegister;
-    private ProgressDialog pDialog;
     private SessionManager session;
     private SQLiteHandler db;
     @Override
@@ -51,8 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister   = (Button)   findViewById(R.id.btnRegister);
 
         //进度对话框
-        pDialog = new ProgressDialog(this);
-        pDialog.setCancelable(true);
+        Dialog pDialog = CustomProgressDialog.createLoadingDialog(this,"正在加载中...");
+        pDialog.setCancelable(true);//允许“返回键取消”
         //会话管理器
         session = new SessionManager(getApplicationContext());
         //SQLite数据库处理程序
@@ -84,13 +83,14 @@ public class RegisterActivity extends AppCompatActivity {
     private void registerUser(final String username,final String password){
         //用于取消请求标签
         String tag_string_req = "req_register";
-        pDialog.setMessage("Registering...");
-        showDialog();
+        final Dialog pDialog = CustomProgressDialog.createLoadingDialog(this,"正在加载中...");
+        pDialog.setCancelable(true);//允许“返回键取消”
+        pDialog.show();
         StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_REGISTER, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d(TAG,"Register Response: " + response.toString());
-                hideDialog();
+                pDialog.dismiss();//进度条关闭
                 try {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
@@ -107,7 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
                         //启动登录页面
                         Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
                         startActivity(intent);
-
+                        finish();
                     }else {
                         //注册错误时，获取错误信息
                         String errorMsg = jObj.getString("error_msg");
@@ -124,7 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
                 byte[] htmlBodyBytes = error.networkResponse.data;
                 Log.e("Register-Error",new String(htmlBodyBytes));
                 Toast.makeText(getApplicationContext(),error.getMessage(),Toast.LENGTH_LONG).show();
-                hideDialog();
+                pDialog.dismiss();//进度条关闭
             }
         }){
             @Override
@@ -139,13 +139,4 @@ public class RegisterActivity extends AppCompatActivity {
         //请求队列添加请求
         AppController.getInstance().addToRequestQueue(strReq,tag_string_req);
         }
-    private void showDialog(){
-        if (!pDialog.isShowing())
-            pDialog.show();
-    }
-
-    private void hideDialog(){
-        if (!pDialog.isShowing())
-            pDialog.dismiss();
-    }
 }

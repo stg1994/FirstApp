@@ -1,5 +1,6 @@
 package com.firstapp;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -88,10 +89,6 @@ public class LoginActivity extends AppCompatActivity {
         et_users = (EditText) findViewById(R.id.et_users);
         et_pwd = (EditText) findViewById(R.id.et_pwd);
 
-
-        //进度对话框
-        pDialog = new ProgressDialog(this);
-        pDialog.setCancelable(false);
         //SQLite数据库处理程序
         db = new SQLiteHandler(getApplicationContext());
         //会话管理器
@@ -151,13 +148,14 @@ public class LoginActivity extends AppCompatActivity {
     private void checkLogin(final String username,final String password){
         // 用于取消请求的标记
         String tag_string_req = "req_login";
-        pDialog.setMessage("登陆中 ...");
-        showDialog();
+        final Dialog pDailog = CustomProgressDialog.createLoadingDialog(this,"正在加载...");
+        pDailog.setCancelable(false);//进度条不允许用“返回键”取消
+        pDailog.show();//显示进度条
         StringRequest strReq = new StringRequest(Request.Method.POST, AppConfig.URL_LOGIN, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, "Login Response: " + response.toString());
-                hideDialog();
+                pDailog.dismiss();//关闭进度条
                 try {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
@@ -196,7 +194,7 @@ public class LoginActivity extends AppCompatActivity {
                 Log.e(TAG, "Login Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_LONG).show();
-                hideDialog();
+                pDailog.dismiss();//关闭进度条
             }
         }) {
             @Override
@@ -210,17 +208,6 @@ public class LoginActivity extends AppCompatActivity {
         };
         // 请求队列添加请求
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
-    }
-
-
-    private void showDialog(){
-        if (!pDialog.isShowing())
-            pDialog.show();
-    }
-
-    private void hideDialog(){
-        if (pDialog.isShowing())
-            pDialog.dismiss();
     }
 
 
